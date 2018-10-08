@@ -16,7 +16,15 @@ namespace StringTreeImplimentation
             parser.CheckCharsForNodes(manager);
             foreach(Node n in manager.myNodes)
             {
-                Console.WriteLine("name: " + n.nodeName + ".  Is child is: " + n.isChild.ToString());
+                Console.Write(n.nodeName);
+                if(n.parent != null)
+                {
+                    Console.Write(" is child of: " + n.parent.nodeName + "\n");
+                }
+                if(n.parent == null)
+                {
+                    Console.Write(" is base.");
+                }
             }
             Console.ReadLine();
         }

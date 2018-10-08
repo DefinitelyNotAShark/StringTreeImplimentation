@@ -14,6 +14,8 @@ namespace StringTreeImplimentation
         private string[] lines;
         private bool isReady;
 
+       
+
         private List<char> whiteSpaces = new List<char>();
         List<char> temp = new List<char>();
 
@@ -21,7 +23,7 @@ namespace StringTreeImplimentation
         {
             try//this takes the text file and turns it into an array of strings
             {
-                dataFileName = "textFile";
+                dataFileName = "people";
                 path = dataFileName + ".txt"; //Path to the folder: " /StringTreeImplimentation/bin/Debug/ "
                 lines = System.IO.File.ReadAllLines(path);
             }
@@ -48,31 +50,40 @@ namespace StringTreeImplimentation
                     next++;
                 }
 
-                if(next == 0)
+                if(next == 0)//this is a base
                 {
-                    Console.WriteLine("base");
-                    Node myNode = new Node(s, false, true);
-                    manager.AddNode(myNode);
+                    Node myNode = new Node(s, 0);//this is a base, so we call the constructor that needs no parent
+                    manager.AddNode(myNode);//this adds our node to a list of nodes
                 }
 
-                else if (next > prev)//now we check it against the previous index
+                else if (next > prev)//this node is a child of the previous node
                 { 
-                    Console.WriteLine("Child");
-                    Node myNode = new Node(s, true, false);
+                    Node myNode = new Node(s, manager.myNodes[manager.myNodes.Count - 1], next);//last node added is parent
                     manager.AddNode(myNode);
                 }
 
-                else if(next < prev)
+                else if (next <= prev)//this node is a child of a previous node 2 or more ago
                 {
-                    Console.WriteLine("Idk what this means yet");
-                }
+                    List<Node> foundNodesWithSpecificSpaceNumber = new List<Node>();
 
-                else if (next == prev)
-                {
-                    Console.WriteLine("not child of prev, but child");
-                    Node myNode = new Node(s, false, false);
+                    foreach (Node n in manager.myNodes)//we search for a node that has -1 white spaces
+                    {
+                        if (n.numOfSpaces == (next - 1))
+                        {
+                            foundNodesWithSpecificSpaceNumber.Add(n);//we add all of the ones that have this to our list
+                        }
+                    }
+                    Node myNode = new Node(s, foundNodesWithSpecificSpaceNumber[foundNodesWithSpecificSpaceNumber.Count - 1], next);//our parent is the last one in the list
+
                     manager.AddNode(myNode);
                 }
+
+                //else if (next == prev)//this node is a child of the same node as the previous.
+                //{
+                //    Console.WriteLine("not child of prev, but child of prev index");
+                //    Node myNode = new Node(s, next);
+                //    manager.AddNode(myNode);
+                //}
 
                 prev = next;
             }

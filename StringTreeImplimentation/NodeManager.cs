@@ -12,7 +12,7 @@ namespace StringTreeImplimentation
 
         public void AddNode(Node nodeToAdd)
         {
-            myNodes.Add(nodeToAdd);
+            myNodes.Add(nodeToAdd);               
         }
 
         public void RemoveNode(Node nodeToRemove)
