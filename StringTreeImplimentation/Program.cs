@@ -10,6 +10,15 @@ namespace StringTreeImplimentation
     {
         static void Main(string[] args)
         {
+            TextParser parser = new TextParser();
+            NodeManager manager = new NodeManager();
+            parser.LoadText();
+            parser.CheckCharsForNodes(manager);
+            foreach(Node n in manager.myNodes)
+            {
+                Console.WriteLine("name: " + n.nodeName + ".  Is child is: " + n.isChild.ToString());
+            }
+            Console.ReadLine();
         }
     }
 }
