@@ -42,23 +42,29 @@ namespace StringTreeImplimentation
 
             foreach (string s in lines)//cycle through each string
             {
+                string nameWithWhiteRemoved = "";
                 char[] chars = s.ToCharArray();//turn string into char array
                 int next = 0;//next is going to be our index
 
                 while (Char.IsWhiteSpace(chars[next]))//until we hit a non blank space, we're gonna make a list of whitespaces
-                {
-                    next++;
+                {      
+                    next++;                 
                 }
 
+                for( int i = next; i < chars.Length; i++)//make a new string to use for name
+                {
+                    nameWithWhiteRemoved += chars[i].ToString();
+                }
+                
                 if(next == 0)//this is a base
                 {
-                    Node myNode = new Node(s, 0);//this is a base, so we call the constructor that needs no parent
+                    Node myNode = new Node(nameWithWhiteRemoved, 0);//this is a base, so we call the constructor that needs no parent
                     manager.AddNode(myNode);//this adds our node to a list of nodes
                 }
 
                 else if (next > prev)//this node is a child of the previous node
                 { 
-                    Node myNode = new Node(s, manager.myNodes[manager.myNodes.Count - 1], next);//last node added is parent
+                    Node myNode = new Node(nameWithWhiteRemoved, manager.myNodes[manager.myNodes.Count - 1], next);//last node added is parent
                     manager.AddNode(myNode);
                 }
 
@@ -73,18 +79,12 @@ namespace StringTreeImplimentation
                             foundNodesWithSpecificSpaceNumber.Add(n);//we add all of the ones that have this to our list
                         }
                     }
-                    Node myNode = new Node(s, foundNodesWithSpecificSpaceNumber[foundNodesWithSpecificSpaceNumber.Count - 1], next);//our parent is the last one in the list
+
+                    Node myNode = 
+                        new Node(nameWithWhiteRemoved, foundNodesWithSpecificSpaceNumber[foundNodesWithSpecificSpaceNumber.Count - 1], next);//our parent is the last one in the list
 
                     manager.AddNode(myNode);
                 }
-
-                //else if (next == prev)//this node is a child of the same node as the previous.
-                //{
-                //    Console.WriteLine("not child of prev, but child of prev index");
-                //    Node myNode = new Node(s, next);
-                //    manager.AddNode(myNode);
-                //}
-
                 prev = next;
             }
         }
