@@ -31,6 +31,9 @@ namespace StringTreeImplimentation
                 }
             }
 
+            Tree myTree = new Tree(manager);
+
+            Console.WriteLine("\n");
             writer.WriteOutlineFile(manager.myNodes, "TreeOutlineFile");
 
             Console.ReadLine();

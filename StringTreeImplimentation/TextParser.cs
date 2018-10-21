@@ -74,7 +74,7 @@ namespace StringTreeImplimentation
 
                     foreach (Node n in manager.myNodes)//we search for a node that has -1 white spaces
                     {
-                        if (n.numOfSpaces == (next - 1))
+                        if (n.depth == (next - 1))
                         {
                             foundNodesWithSpecificSpaceNumber.Add(n);//we add all of the ones that have this to our list
                         }

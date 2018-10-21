@@ -14,7 +14,7 @@ namespace StringTreeImplimentation
             return fileName + ".txt"; //Path to the folder: " /AlgorithmsDataSortingApp/bin/Debug/ "
         }
         private string space = "\t";//it's a tab to make it look good
-        private int spaceNum;
+        private int nodeDepth;
 
         public void WriteOutlineFile(List<Node> nodes, string fileName)
         {
@@ -29,7 +29,7 @@ namespace StringTreeImplimentation
                     {
                         //using (StreamWriter sw = new  StreamWriter(path(fileName)))
                         sw.WriteLine(nodes[i].nodeName);
-                        spaceNum = 0;
+                        nodeDepth = 0;
                     }
 
                     //else
@@ -59,9 +59,9 @@ namespace StringTreeImplimentation
 
                     else
                     {
-                        spaceNum = nodes[i].parent.numOfSpaces + 1;//sorry I tried to do this but i just can't seem to muster the brainpower
+                        nodeDepth = nodes[i].parent.depth + 1;//sorry I tried to do this but i just can't seem to muster the brainpower
 
-                        for (int a = 0; a < spaceNum; a++)//prints out the node with the number of spaces it needs
+                        for (int a = 0; a < nodeDepth; a++)//prints out the node with the number of spaces it needs
                         {
                             //using (StreamWriter sw = new StreamWriter(path(fileName)))
                             sw.Write(space);//write out a space
