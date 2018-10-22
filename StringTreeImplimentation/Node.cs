@@ -8,6 +8,7 @@ namespace StringTreeImplimentation
 {
     class Node
     {
+        public int id;
         public string nodeName;
         public Node parent;
         public int depth;//if an object has a parent, you find out the num of spaces of the parent and then add 1 to make child.

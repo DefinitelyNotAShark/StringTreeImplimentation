@@ -6,14 +6,36 @@ using System.Threading.Tasks;
 
 namespace StringTreeImplimentation
 {
-    class Tree
+    class Tree : INode
     {
+        private NodeManager myNodeManager;
+
         public Tree(NodeManager manager)
         {
+            myNodeManager = manager;
             AddPointersToDirectChildren(manager);
             //GetAllChildren(manager);
         }
 
+        //public string content()
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        public void FindNode(string nodeId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Get(string id, bool shouldGetBranch)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void MoveNode(string nodeId, string parentID)
+        {
+            throw new NotImplementedException();
+        }
 
         void AddPointersToDirectChildren(NodeManager manager)
         {
@@ -26,10 +48,6 @@ namespace StringTreeImplimentation
                     else break;
                 }
             }
-        }   
-        
-        //private void GetAllChildren(NodeManager manager)
-        //{
-        //}
+        }           
     }
 }

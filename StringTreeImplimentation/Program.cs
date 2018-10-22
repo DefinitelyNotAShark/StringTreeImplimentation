@@ -16,20 +16,11 @@ namespace StringTreeImplimentation
             TextWriter writer = new TextWriter();
             parser.LoadText();
             parser.CheckCharsForNodes(manager);
+            manager.IndexNodes();
+            manager.DebugWriteOutChildren();//tell me who is a child of who
+            manager.DebugAskIfAddNode();
+            manager.DebugWriteOutChildren();
 
-            //Debug write out everything
-            foreach (Node n in manager.myNodes)
-            {
-                Console.Write(n.nodeName);
-                if (n.parent != null)
-                {
-                    Console.Write(" is child of: " + n.parent.nodeName + "\n");
-                }
-                if (n.parent == null)
-                {
-                    Console.Write(" is base.");
-                }
-            }
 
             Tree myTree = new Tree(manager);
 

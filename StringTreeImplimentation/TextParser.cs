@@ -14,8 +14,6 @@ namespace StringTreeImplimentation
         private string[] lines;
         private bool isReady;
 
-       
-
         private List<char> whiteSpaces = new List<char>();
         List<char> temp = new List<char>();
 
@@ -59,13 +57,13 @@ namespace StringTreeImplimentation
                 if(next == 0)//this is a base
                 {
                     Node myNode = new Node(nameWithWhiteRemoved, 0);//this is a base, so we call the constructor that needs no parent
-                    manager.AddNode(myNode);//this adds our node to a list of nodes
+                    manager.myNodes.Add(myNode);//this adds our node to a list of nodes
                 }
 
                 else if (next > prev)//this node is a child of the previous node
                 { 
                     Node myNode = new Node(nameWithWhiteRemoved, manager.myNodes[manager.myNodes.Count - 1], next);//last node added is parent
-                    manager.AddNode(myNode);
+                    manager.myNodes.Add(myNode);
                 }
 
                 else if (next <= prev)//this node is a child of a previous node 2 or more ago
@@ -83,7 +81,7 @@ namespace StringTreeImplimentation
                     Node myNode = 
                         new Node(nameWithWhiteRemoved, foundNodesWithSpecificSpaceNumber[foundNodesWithSpecificSpaceNumber.Count - 1], next);//our parent is the last one in the list
 
-                    manager.AddNode(myNode);
+                    manager.myNodes.Add(myNode);
                 }
                 prev = next;
             }
