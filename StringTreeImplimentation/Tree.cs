@@ -27,10 +27,6 @@ namespace StringTreeImplimentation
             throw new NotImplementedException();
         }
 
-        public void Get(string id, bool shouldGetBranch)
-        {
-            throw new NotImplementedException();
-        }
 
         public void MoveNode(string nodeId, string parentID)
         {

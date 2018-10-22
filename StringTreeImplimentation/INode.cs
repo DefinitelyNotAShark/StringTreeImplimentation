@@ -8,7 +8,6 @@ namespace StringTreeImplimentation
 {
     interface INode
     {
-        void Get(string id, bool shouldGetBranch);
         void MoveNode(string nodeId, string parentID);//supposed to move all the children
         void FindNode(string nodeId);
     }

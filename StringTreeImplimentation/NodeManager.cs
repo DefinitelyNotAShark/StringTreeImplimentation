@@ -6,33 +6,27 @@ using System.Threading.Tasks;
 
 namespace StringTreeImplimentation
 {
-    class NodeManager
+    class NodeManager : INode
     {
+        public NodeManager()
+        {
+            IndexNodes();
+        }
+
         public List<Node> myNodes = new List<Node>();
-
-        public void AddNode(Node nodeToAdd, int index)
-        {
-            myNodes.Insert(index, nodeToAdd);
-            IndexNodes();//re-index after adding
-        }
-
-        public void RemoveNode(int indexOfNode)
-        {
-            myNodes.RemoveAt(indexOfNode);
-        }
 
         public void DebugWriteOutChildren()
         {
             foreach (Node n in myNodes)
             {
-                Console.Write(n.nodeName + n.id);
+                Console.Write("(" + n.id + ")"+ n.nodeName);
                 if (n.parent != null)
                 {
                     Console.Write(" is child of: " + n.parent.nodeName + "\n");
                 }
                 if (n.parent == null)
                 {
-                    Console.Write(" is base.");
+                    Console.Write(" is base.\n");
                 }
             }
         }
@@ -41,6 +35,7 @@ namespace StringTreeImplimentation
         {
             int parentIDToInt;
             string nameOfNodeToAdd;
+            Console.WriteLine("ADD NODE");
             Console.WriteLine("Type the ID number of the parent node");
             string parentID = Console.ReadLine();//get a string input
 
@@ -83,6 +78,7 @@ namespace StringTreeImplimentation
         {
             string indexInput;
             int indexToRemove;
+            Console.Write("REMOVE NODE");
             Console.WriteLine("Type the ID of the node that you want to remove");
             indexInput = Console.ReadLine();
             try//try to convert my input to an int
@@ -98,6 +94,65 @@ namespace StringTreeImplimentation
             RemoveNode(indexToRemove);
         }
 
+        private void AddNode(Node nodeToAdd, int index)
+        {
+            myNodes.Insert(index + 1, nodeToAdd);
+            IndexNodes();//re-index after adding
+        }
+
+        private void RemoveNode(int indexOfNode)
+        {
+            myNodes.RemoveAt(indexOfNode);
+            IndexNodes();
+        }
+
+
+        public void DebugAskIfGetNode()
+        {
+            string indexInput;
+            int indexToGet;
+            Console.WriteLine("GET NODE");
+            Console.WriteLine("Please type the ID of the node branch you want to get");
+            indexInput = Console.ReadLine();
+            try
+            {
+                Convert.ToInt32(indexInput);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("That is not a valid ID. Please type a number that lines up with a node");
+                DebugAskIfGetNode();
+            }
+            indexToGet = Convert.ToInt32(indexInput);
+            GetNode(indexToGet);   
+        }
+
+
+        private void GetNode(int index)
+        {
+            string parentName;
+            Node currentNode = myNodes[index];//this is the node we start looking at
+            if (currentNode.directChildren != null)//as long as the node we're looking at has a direct child, we're gonna get that node and then call it again for its child
+            {
+                try
+                {
+                    parentName = currentNode.parent.nodeName;
+                }
+                catch(Exception)
+                {
+                    parentName = "No parent";
+                }
+
+                Console.WriteLine("node: " + currentNode.nodeName + " index: " + currentNode.id + " parent: " + parentName + " depth: " + currentNode.depth);//this is the gotten node. We write it's info
+                foreach (Node n in currentNode.directChildren)//for every direct child that node has, we're gonna get it
+                {
+                    Console.WriteLine("NODE CHILDREN: ");
+                    GetNode(n.id);
+                }
+            }
+            IndexNodes();
+        }
+
         public void IndexNodes()
         {
             int temp = 0;
@@ -108,5 +163,14 @@ namespace StringTreeImplimentation
             }
         }
 
+        public void MoveNode(string nodeId, string parentID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void FindNode(string nodeId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
