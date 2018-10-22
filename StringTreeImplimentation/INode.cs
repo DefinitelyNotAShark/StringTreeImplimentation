@@ -8,7 +8,11 @@ namespace StringTreeImplimentation
 {
     interface INode
     {
-        void MoveNode(string nodeId, string parentID);//supposed to move all the children
-        void FindNode(string nodeId);
+        void MoveNode(int nodeId, int parentID);//supposed to move all the children
+        void FindNode(int nodeId);
+        void GetNode(int index);
+        void AddNode(Node nodeToAdd, int index); ////enforce unique on add
+        void RemoveNode(int indexOfNode);
+        //FindNode(content id); // might return list of matches
     }
 }

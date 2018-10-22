@@ -19,10 +19,10 @@ namespace StringTreeImplimentation
             manager.IndexNodes();
             manager.DebugWriteOutChildren();//tell me who is a child of who
             Tree myTree = new Tree(manager);//this is where the tree has to be created so it can use the info that the manager has
-            //manager.DebugAskIfAddNode();
-            //manager.DebugWriteOutChildren();
-           // manager.AskIfRemoveNode();
-            //manager.DebugWriteOutChildren();
+            manager.DebugAskIfAddNode();
+            manager.DebugWriteOutChildren();
+            manager.AskIfRemoveNode();
+            manager.DebugWriteOutChildren();
             manager.DebugAskIfGetNode();
             manager.DebugWriteOutChildren();
 

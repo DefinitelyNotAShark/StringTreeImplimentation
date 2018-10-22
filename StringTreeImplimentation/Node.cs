@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StringTreeImplimentation
 {
-    class Node
+    class Node 
     {
         public int id;
         public string nodeName;

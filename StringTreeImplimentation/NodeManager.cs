@@ -19,7 +19,7 @@ namespace StringTreeImplimentation
         {
             foreach (Node n in myNodes)
             {
-                Console.Write("(" + n.id + ")"+ n.nodeName);
+                Console.Write("(" + n.id + ")" + n.nodeName);
                 if (n.parent != null)
                 {
                     Console.Write(" is child of: " + n.parent.nodeName + "\n");
@@ -71,7 +71,7 @@ namespace StringTreeImplimentation
             Console.WriteLine("Type the name of the node");
             nameOfNodeToAdd = Console.ReadLine();
 
-            AddNode(new Node(nameOfNodeToAdd, myNodes[parentIDToInt] ,depthOfNodeToAdd), parentIDToInt);
+            AddNode(new Node(nameOfNodeToAdd, myNodes[parentIDToInt], depthOfNodeToAdd), parentIDToInt);
         }
 
         public void AskIfRemoveNode()
@@ -94,19 +94,6 @@ namespace StringTreeImplimentation
             RemoveNode(indexToRemove);
         }
 
-        private void AddNode(Node nodeToAdd, int index)
-        {
-            myNodes.Insert(index + 1, nodeToAdd);
-            IndexNodes();//re-index after adding
-        }
-
-        private void RemoveNode(int indexOfNode)
-        {
-            myNodes.RemoveAt(indexOfNode);
-            IndexNodes();
-        }
-
-
         public void DebugAskIfGetNode()
         {
             string indexInput;
@@ -124,11 +111,24 @@ namespace StringTreeImplimentation
                 DebugAskIfGetNode();
             }
             indexToGet = Convert.ToInt32(indexInput);
-            GetNode(indexToGet);   
+            GetNode(indexToGet);
         }
 
 
-        private void GetNode(int index)
+        public void AddNode(Node nodeToAdd, int index)
+        {
+            myNodes.Insert(index + 1, nodeToAdd);
+            IndexNodes();//re-index after adding
+        }
+
+        public void RemoveNode(int indexOfNode)
+        {
+            myNodes.RemoveAt(indexOfNode);
+            IndexNodes();
+        }
+
+
+        public void GetNode(int index)
         {
             string parentName;
             Node currentNode = myNodes[index];//this is the node we start looking at
@@ -138,7 +138,7 @@ namespace StringTreeImplimentation
                 {
                     parentName = currentNode.parent.nodeName;
                 }
-                catch(Exception)
+                catch (Exception)
                 {
                     parentName = "No parent";
                 }
@@ -163,14 +163,14 @@ namespace StringTreeImplimentation
             }
         }
 
-        public void MoveNode(string nodeId, string parentID)
+        public void MoveNode(int nodeId, int parentID)//supposed to move all the children
+        {
+            throw new NotImplementedException();
+        }
+        public void FindNode(int nodeId)
         {
             throw new NotImplementedException();
         }
 
-        public void FindNode(string nodeId)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

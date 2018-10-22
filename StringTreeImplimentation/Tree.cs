@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StringTreeImplimentation
 {
-    class Tree : INode
+    class Tree
     {
         private NodeManager myNodeManager;
 
@@ -15,22 +15,6 @@ namespace StringTreeImplimentation
             myNodeManager = manager;
             AddPointersToDirectChildren(manager);
             //GetAllChildren(manager);
-        }
-
-        //public string content()
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        public void FindNode(string nodeId)
-        {
-            throw new NotImplementedException();
-        }
-
-
-        public void MoveNode(string nodeId, string parentID)
-        {
-            throw new NotImplementedException();
         }
 
         void AddPointersToDirectChildren(NodeManager manager)
